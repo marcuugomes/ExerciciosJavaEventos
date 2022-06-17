@@ -1,11 +1,10 @@
-package Exercicio_1;
+package eventos;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class AL extends Listeners{
+public class AL extends Listeners {
     private JPanel panel;
     TextField text = new TextField(20);
     Button b;
