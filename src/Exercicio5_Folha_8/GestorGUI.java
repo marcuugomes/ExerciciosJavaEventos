@@ -59,7 +59,7 @@ public class GestorGUI {
         frame.pack();
 
         for (Aluno a: turma.getAlunos()) {
-            studentList.append(a.infoAluno()+"\n");
+            studentList.append(a.infoAluno() + "\n");
         }
 
 
@@ -67,20 +67,54 @@ public class GestorGUI {
 
 
         fileChooser = new JFileChooser();
+
+
+        this.openBt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                studentList.setText(null);
+                reset();
+            }
+        });
         this.searchButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                studentList.setText("");
+                studentList.setText(null);
 
+                if (searchBtGroup.getSelection().getActionCommand().equals("nome")) {
+                    for( Aluno a : turma.selecionarPorNome(searchField.getText())){
+                        studentList.append(a.infoAluno()+"\n");
+                    }
+                } else if (searchBtGroup.getSelection().getActionCommand().equals("mec")) {
+                    
+                    for( Aluno a : turma.selecionarPorNumero(Integer.parseInt(searchField.getText()))){
+                        studentList.append(a.infoAluno()+"\n");
+                    }
+                } else if (searchBtGroup.getSelection().getActionCommand().equals("tipo_avaliacao")) {
 
-                studentList.setText(turma.selecionarPorNome(searchField.getText()).toString());
+                    TipoAvaliacao aux = TipoAvaliacao.AV_FINAL;
+
+                    if(searchField.equals("Avaliação Discreta")){
+                        aux=TipoAvaliacao.AV_DISCRETA;
+                    }else if(searchField.equals("Avaliação Final")){
+                        aux=TipoAvaliacao.AV_FINAL;
+                    }
+                    for( Aluno a : turma.selecionarPorAvaliacao(aux)){
+                        studentList.append(a.infoAluno()+"\n");
+                    }
+                }
 
 
             }
         });
     }
 
+    public void reset (){
+        for (Aluno a: turma.getAlunos()) {
+            studentList.append(a.infoAluno() + "\n");
+        }
+    }
     public static void main(String[] args) {
         GestorGUI gestorGUI = new GestorGUI();
 

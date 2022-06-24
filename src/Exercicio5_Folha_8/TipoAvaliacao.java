@@ -11,7 +11,7 @@ public enum TipoAvaliacao {
         switch (this){
 
             case AV_FINAL:
-                aux= "Avaliação Fiscreta";
+                aux= "Avaliação Discreta";
                 break;
 
             case AV_DISCRETA:
