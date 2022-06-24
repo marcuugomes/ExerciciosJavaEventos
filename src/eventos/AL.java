@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 public class AL extends Listeners {
     private JPanel panel;
     TextField text = new TextField(20);
-    Button b;
+    Button b, c;
     private int numClicks = 0;
 
     public static void main(String[] args) {
@@ -23,7 +23,9 @@ public class AL extends Listeners {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
         b = new Button("Click me");
+        c = new Button("mamas");
         panel.add(b);
+        panel.add(c);
         panel.add(text);
         b.addMouseListener(new Listeners(){
             @Override
