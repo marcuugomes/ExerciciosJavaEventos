@@ -62,12 +62,28 @@ public class GestorGUI {
             studentList.append(a.infoAluno() + "\n");
         }
 
-
-
-
-
         fileChooser = new JFileChooser();
 
+        this.addBt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                if (finalEvalCb.isSelected()){
+                    turma.addAluno(nameTxt.getText(), Integer.parseInt(mecTxt.getText()),TipoAvaliacao.AV_FINAL);
+                }else{
+                    turma.addAluno(nameTxt.getText(), Integer.parseInt(mecTxt.getText()), TipoAvaliacao.AV_DISCRETA);
+                }
+            }
+        });
+
+        this.removeBt.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (nameTxt!=null && mecTxt!=null){
+                    turma.removerPorN(Integer.parseInt(mecTxt.getText()));
+                }
+            }
+        });
 
         this.openBt.addMouseListener(new MouseAdapter() {
             @Override
@@ -104,10 +120,11 @@ public class GestorGUI {
                         studentList.append(a.infoAluno()+"\n");
                     }
                 }
-
-
             }
         });
+
+
+
     }
 
     public void reset (){

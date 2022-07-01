@@ -15,6 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SomaTextoGUI {
     private JPanel panel;
@@ -45,15 +47,29 @@ public class SomaTextoGUI {
             @Override
             public void keyReleased(KeyEvent e) {
 
-                num.setText("" + jtfInput.getText().length());
 
                 char[] aux = jtfInput.getText().toCharArray();
+
                 int aux2 = 0;
+
                 for (int i = 0; i < aux.length; i++) {
-                    aux2 += aux[i];
+
+                    if ((aux[i]>=65 && aux[i] <=90) || (aux[i]>=97 && aux[i]<=122)){
+                        aux2 += aux[i];
+                    }
+
+
                 }
                 alfa.setText("" + aux2);
             }
         });
+
+        click.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                numChar.setText("" + jtfInput.getText().length());
+            }
+        });
+
     }
 }
